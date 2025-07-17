@@ -20,9 +20,10 @@ app.get('/:id', (req, res) => {
 
 app.delete('/:id', (req, res) => {
     const { id } = req.params;
-    db.query('DELETE FROM pacientes WHERE id = ?', [id], () => {
-        res.send(`Paciente ${id}, deletado com sucesso!`)
+    db.query('DELETE FROM pacientes WHERE id = ?', [id], (err, results) => {
+        res.send(`Deletado com sucesso, ${results}`)
     })
 })
+
 
 module.exports = app;
